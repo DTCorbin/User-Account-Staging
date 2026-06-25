@@ -8,6 +8,7 @@ function progressbar {
 	local ratio=$(($progress *$width  / $total))
 	local remainder=$((width - ratio))
 	local str="Provisioning users: ["
+	
 	for i in $(seq $ratio); do
 		str+="\e[32m\u25ae\e[0m"
 	done
@@ -58,6 +59,7 @@ len=$(wc -l < "$USERS")
 processed=0
 ACCNTS=0
 GRPS=0
+#Provisioning loop
 while IFS=";" read -r username groups; do
 	((processed++))
 	if id "$username" &>/dev/null; then
